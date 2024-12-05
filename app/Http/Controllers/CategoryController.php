@@ -69,7 +69,7 @@ class CategoryController extends Controller
                 'data' => $category
             ], 200);
         } catch (\Throwable $th) {
-            return response([
+            return response()->json([
                 'success' => false,
                 'message' => 'Terjadi Kesalahan : ' . $th->getMessage()
             ], 500);

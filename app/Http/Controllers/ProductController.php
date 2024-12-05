@@ -39,8 +39,12 @@ class ProductController extends Controller
             $query->whereDate('created_at', $request->created_at);
         }
 
-        $products = $query->paginate(10);
 
+
+        $products = $query->paginate(10);
+        // foreach ($products as $product) {
+        //     number_format($product, 2);
+        // }
         if ($products->isEmpty()) {
             return response()->json([
                 'success' => false,
@@ -101,7 +105,7 @@ class ProductController extends Controller
                 'category_id' => $request->category_id,
                 'status_stock' => $request->status_stock
             ]);
-            return response([
+            return response()->json([
                 'success' => true,
                 'message' => 'Product berhasil disimpan',
                 'data' => $product
@@ -181,7 +185,7 @@ class ProductController extends Controller
                 'data' => $product
             ], 200);
         } catch (\Throwable $th) {
-            return response([
+            return response()->json([
                 'success' => false,
                 'message' => 'Terjadi Kesalahan : ' . $th->getMessage()
             ], 500);
