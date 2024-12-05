@@ -140,8 +140,8 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $data = Validator::make($request->all(), [
-            'name' => 'nullable|string|max:255',
-            'price' => 'nullable|numeric|min:0',
+            'name' => 'nullable|string',
+            'price' => 'nullable|numeric',
             'description' => 'nullable|string',
             'category_id' => 'nullable|exists:categories,id',
             'status_stock' => 'nullable',
@@ -179,7 +179,7 @@ class ProductController extends Controller
                 'category_id' => $request->input('category_id', $product->category_id),
                 'status_stock' => $request->input('status_stock', $product->status_stock),
             ]));
-            return response([
+            return response()->json([
                 'success' => true,
                 'message' => 'Product berhasil diubah',
                 'data' => $product
